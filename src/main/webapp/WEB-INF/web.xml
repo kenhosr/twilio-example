@@ -25,4 +25,14 @@
         <url-pattern>/handle-key</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ReplyMessage</servlet-name>
+        <servlet-class>com.veeva.dc.qa.IncomingMessage</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ReplyMessage</servlet-name>
+        <url-pattern>/reply-message</url-pattern>
+    </servlet-mapping>
+
 </web-app>
