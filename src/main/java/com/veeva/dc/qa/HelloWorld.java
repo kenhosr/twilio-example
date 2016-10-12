@@ -1,6 +1,8 @@
 package com.veeva.dc.qa;
 
 
+import com.twilio.twiml.Gather;
+import com.twilio.twiml.Method;
 import com.twilio.twiml.Play;
 import com.twilio.twiml.Say;
 import com.twilio.twiml.TwiMLException;
@@ -39,9 +41,18 @@ public class HelloWorld extends HttpServlet {
         // Create a TwiML response and add our friendly message.
         VoiceResponse twiml = new VoiceResponse.Builder()
                 // Play an MP3 for incoming callers.
-                .play(new Play.Builder("http://appsenseca.cloudapp.net/workflow-1.0-SNAPSHOT/calls_confirmation_v2.mp3").build())
-                .play(new Play.Builder("http://appsenseca.cloudapp.net/workflow-1.0-SNAPSHOT/custom_voice.mp3").build())
+                .play(new Play.Builder("http://appsenseca.cloudapp.net/calls_confirmation_v2.mp3").build())
+                .play(new Play.Builder("http://appsenseca.cloudapp.net/custom_voice.mp3").build())
                 .say(new Say.Builder(message).build())
+                .gather(new Gather.Builder()
+                        .action("/handle-key")
+                        .method(Method.POST)
+                        .numDigits(1)
+                        .say(new Say
+                                .Builder("To speak to a real monkey, press 1. Press any other key to start over.")
+                                .build())
+                        .build()
+                )
                 .build();
 
         response.setContentType("application/xml");

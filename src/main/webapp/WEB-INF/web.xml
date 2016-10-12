@@ -15,4 +15,14 @@
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TwilioHandleKeyServlet</servlet-name>
+        <servlet-class>com.veeva.dc.qa.TwilioHandleKeyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TwilioHandleKeyServlet</servlet-name>
+        <url-pattern>/handle-key</url-pattern>
+    </servlet-mapping>
+
 </web-app>
